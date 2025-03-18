@@ -1,0 +1,26 @@
+name: Subtree
+
+on:
+  workflow_dispatch:
+
+jobs:
+  subtree:
+    name: Subtree
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Subtree Pull
+        shell: bash
+        run: |
+          git subtree pull --prefix .github/workflows git@github.com:hhornburg-qs/subtree-sub.git main --squash
+
+      - name: Create PR
+        shell: bash
+        run: |
+          git checkout -b update-workflows
+
+      - name: create pull request
+        run: gh pr create -B main -H update-workflows --title 'Update GitHub Workflows' --body 'Created by Github action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
