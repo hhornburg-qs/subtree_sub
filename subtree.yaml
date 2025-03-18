@@ -13,7 +13,7 @@ jobs:
       - name: Subtree Pull
         shell: bash
         run: |
-          git subtree pull --prefix .github/workflows git@github.com:hhornburg-qs/subtree-sub.git main --squash
+          git subtree pull --prefix .github/workflows https://github.com/hhornburg-qs/subtree_sub.git main --squash
 
       - name: Create PR
         shell: bash
